@@ -1,0 +1,22 @@
+server:
+  port: 9092
+  http2:
+    enabled: true
+
+graphql:
+  playground:
+    mapping: /playground
+  servlet:
+    maxQueryDepth: 5
+    exception-handlers-enabled: true
+
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+    cors:
+      allowed-origins: /**
+    schema:
+      printer:
+        enabled: true
+
