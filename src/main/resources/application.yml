@@ -5,13 +5,23 @@ server:
 
 graphql:
   playground:
-    mapping: /playground
+    headers:
+      Authorization: Bearer TOKEN
+    tabs:
+      - name: Bank account sample query
+        query: classpath:playground/bank_account.graphql
+        variables: classpath:playground/bank_account_variables.json
   servlet:
-    maxQueryDepth: 5
-    exception-handlers-enabled: true
+    max-query-depth: 5
+    max-query-complexity: 5
+#    exception-handlers-enabled: true
 
 spring:
   graphql:
+    instrumentation:
+      max-query-complexity: 100 # DDOS attack
+      max-query-depth: 10 # DDOS attack limit
+
     graphiql:
       enabled: true
     cors:
@@ -20,3 +30,5 @@ spring:
       printer:
         enabled: true
 
+voyager:
+  enabled: false
